@@ -1,0 +1,4 @@
+/client/src/images/*
+/client/src/processed_images/*
+/server/upload/*
+/.venv
