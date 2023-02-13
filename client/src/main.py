@@ -1,6 +1,5 @@
 import uuid
 import requests
-
 import cv2
 
 def upload_image(filename):
@@ -15,9 +14,17 @@ def main():
     _, image = camera.read()
     id = str(uuid.uuid4())
     filename = f"processed_images/{id}.jpg"
-
-    cv2.imwrite(filename, image)
+    filename='images/plate.jpeg'
+    # cv2.imwrite(filename, image)
     upload_image(filename)
 
 
-main()
+import serial
+
+port = serial.Serial('COM4',9600) #serial port and baud rate
+
+while port.is_open:
+    data = port.readline()
+    msg = data.decode('utf-8')
+    if msg.strip() == "Hello, World!":  #checking string
+        main()
